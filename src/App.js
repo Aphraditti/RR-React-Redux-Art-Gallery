@@ -9,9 +9,11 @@ import {
   reset
 } from './features/dataSlice';
 
-const mapStateToProps = state => ({ artId: state.data.artId });
+const mapStateToProps = state => { 
+  return state.data;
+};
 
-function App({ artId }) {
+function App({ artId, isLoggedIn }) {
   const dispatch = useDispatch();
   const currentState = useSelector(state => state.data);
 
@@ -21,6 +23,7 @@ function App({ artId }) {
 
   const renderImage = () => {
     return currentState.apiData? (
+     // eslint-disable-next-line 
       <img src={currentState.apiData?.primaryImage} />
     ) : (
       <h3>No image available</h3>
@@ -28,7 +31,7 @@ function App({ artId }) {
   };
 
   return (
-    <div className='App'>
+    <div className='App' style={{ 'background': isLoggedIn ? 'red' : 'white' }}>
       <div className='button-container'>
         <button onClick={
           () => dispatch(fetchData())

@@ -4,7 +4,8 @@ const getApiUrl = artId => `https://collectionapi.metmuseum.org/public/collectio
 
 const initialState = {
     artId: 10245,
-    apiData: {}
+    apiData: {},
+    isLoggedIn: true
 };
 
 export const dataSlice = createSlice({
